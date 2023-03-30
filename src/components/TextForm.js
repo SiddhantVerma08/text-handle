@@ -23,6 +23,11 @@ export default function TextForm(props) {
       text.select();
       navigator.clipboard.writeText(text.value)
     }
+    const wordCount = (str) => {
+      return str.split(' ').filter(function(num) {
+        return num !== ''
+       }).length;
+    }
   const [count, setCount] = useState("Enter text here!");
   return (
     <>
@@ -45,7 +50,7 @@ export default function TextForm(props) {
     </div>
     <div className="container my-3" style={{color: props.mode==="dark"?"white":"#146b78"}}>
       <h2>Your text summary</h2>
-      <p>{count.split(" ").length} Words and {count.length} characters</p>
+      <p>{wordCount(count)} Words and {count.length} characters</p>
       <p>{0.008 * count.split(" ").length} Min Read</p>
       <h2>Your Preview</h2>
       <p>{count.length>0?count:"Enter text to preview here"}</p>
